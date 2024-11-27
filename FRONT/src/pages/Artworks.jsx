@@ -9,7 +9,7 @@ useEffect(() => {
     const fetchArtworks = async () => {
         try {
             const response = await api.get('/artworks')
-            sethArtworks(response.data) 
+            setArtworks(response.data) 
         } catch (error) {
             console.error('Error fetching artworks;', error)
         }
