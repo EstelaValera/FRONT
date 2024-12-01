@@ -1,0 +1,89 @@
+body {
+  font-family: "Crimson Text", serif;
+  font-weight: 400;
+  font-style: normal;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
+
+.headed {
+  text-align: center;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+}
+
+p, a, button {
+  font-family: 'Roboto', sans-serif;
+}
+
+button {
+  background-color: bisque;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #8a2209;
+}
+
+.searchbar-container {
+  margin: 10px;
+  text-align: center;
+  
+}
+
+.searchbar-input {
+  padding: 10px;
+  width: 300px;
+}
+
+.searchbar-button {
+  padding: 10px;
+  margin-left: 10px;
+  border-radius: 8px;
+}
+
+.searchbar-error {
+  color: red;
+  margin-top: 20px;
+}
+
+.searchbar-artwork-container {
+  margin-top: 20px;
+}
+
+.searchbar-artwork-card {
+  margin: 10px auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 400px;
+  text-align: left;
+}
+
+.searchbar-artwork-img {
+  width: 100%;
+  height: auto;
+}
+
+.artwork-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+.artwork-card-img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+

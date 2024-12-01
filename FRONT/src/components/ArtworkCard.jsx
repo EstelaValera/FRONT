@@ -4,8 +4,8 @@ const ArtworkCard = ({ artwork }) => {
     return (
         <div style={{ border: '1px solid #ccc', padding: '10px', margin: '10px', borderRadius: '5px' }}>
             <h3>{artwork.title}</h3>
-            <p><strong>Artist:</strong> {artwork.artist}</p>
-            {artwork.date && <p><strong>Date:</strong> {artwork.date}</p>}
+            <p><strong>Artist:</strong> {artwork.people && artwork.people[0] ? artwork.people[0].name : 'Unknown artist'}</p>
+            {artwork.dated && <p><strong>Date:</strong> {artwork.dated}</p>}
             {artwork.description && <p><strong>Description:</strong> {artwork.description}</p>}
             {artwork.primaryimageurl ? (
                 <img 
