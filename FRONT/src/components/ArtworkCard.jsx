@@ -2,7 +2,7 @@ import React from 'react';
 
 const ArtworkCard = ({ artwork }) => {
     return (
-        <div style={{ border: '1px solid #ccc', padding: '10px', margin: '10px', borderRadius: '5px' }}>
+        <div>
             <h3>{artwork.title}</h3>
             <p><strong>Artist:</strong> {artwork.people && artwork.people[0] ? artwork.people[0].name : 'Unknown artist'}</p>
             {artwork.dated && <p><strong>Date:</strong> {artwork.dated}</p>}
@@ -10,14 +10,12 @@ const ArtworkCard = ({ artwork }) => {
             {artwork.primaryimageurl ? (
                 <img 
                     src={artwork.primaryimageurl} 
-                    alt={artwork.title} 
-                    style={{ width: '100%', objectFit: 'cover', borderRadius: '5px' }} 
+                    alt={artwork.title}  
                 />
             ) : (
                 <img 
                     src="/placeholder-image.jpg" 
                     alt="No available image" 
-                    style={{ width: '100%', objectFit: 'cover', borderRadius: '5px' }} 
                 />
             )}
             {artwork.id ? (

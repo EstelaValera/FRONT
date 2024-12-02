@@ -10,13 +10,13 @@ const SearchBar = ({ placeholder, onSearch }) => {
     };
 
     return (
-        <div style={{ margin: '20px', textAlign: 'center' }}>
+        <div className="search-container">
             <input
                 type="text"
                 placeholder={placeholder}
                 value={query}
                 onChange={handleInputChange}
-                style={{ padding: '10px', width: '300px' }}
+                className="search-input"
             />
         </div>
     );

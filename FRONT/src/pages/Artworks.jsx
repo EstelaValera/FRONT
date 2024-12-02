@@ -5,18 +5,20 @@ const Artworks = () => {
     const [artworks, setArtworks] = useState([])
 
 
-useEffect(() => {
-    const fetchArtworks = async () => {
-        try {
-            const response = await api.get('/artworks')
-            setArtworks(response.data) 
-        } catch (error) {
-            console.error('Error fetching artworks;', error)
+    useEffect(() => {
+        const fetchArtworks = async () => {
+            try {
+                const response = await api.get('/artworks');
+                setArtworks(response.data);
+            } catch (error) {
+                console.error('Error fetching artworks:', error);
+            }
+        };
+    
+        if (filters.general || filters.person || filters.title || filters.period) {
+            fetchArtworks();
         }
-    };
-
-    fetchArtworks();
-}, []);
+    }, [filters]);
 
 return (
     <div>

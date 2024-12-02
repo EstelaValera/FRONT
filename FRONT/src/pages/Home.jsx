@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import SearchBar from '../components/SearchBar';
 import ArtworkList from '../components/ArtworkList';
 import api from '../services/api';
+import debounce from 'lodash.debounce';
+import '../styles/App.css';
 
 const Home = () => {
     const [artworks, setArtworks] = useState([]);
@@ -20,55 +22,63 @@ const Home = () => {
         }));
     };
 
+    const fetchArtworks = async () => {
+        try {
+            setError(null);
+            const params = {};
+            if (filters.general) params.query = filters.general;
+            if (filters.person) params.person = filters.person;
+            if (filters.title) params.title = filters.title;
+            // if (filters.period) params.period = filters.period;
+
+            if (Object.keys(params).length === 0) return;
+
+            const queryString = new URLSearchParams(params).toString();
+            const response = await api.get(`/artworks/search?${queryString}`);
+            const artworksWithImages = response.data.filter(artwork => artwork.primaryimageurl);
+            setArtworks(artworksWithImages);
+        } catch (err) {
+            setError('No artworks found or an error occurred.');
+            setArtworks([]);
+        }
+    };
+
+    const debouncedFetchArtworks = debounce(fetchArtworks, 500); 
+
     useEffect(() => {
-        const fetchArtworks = async () => {
-            try {
-                setError(null);
+        debouncedFetchArtworks(); 
 
-                const params = {};
-                if (filters.general) params.query = filters.general;
-                if (filters.person) params.person = filters.person;
-                if (filters.title) params.title = filters.title;
-                if (filters.period) params.period = filters.period;
-
-                const queryString = new URLSearchParams(params).toString();
-                const response = await api.get(`/artworks/search?${queryString}`);
-
-                setArtworks(response.data);
-            } catch (err) {
-                setError('No artworks found or an error occurred.');
-                setArtworks([]);
-            }
+        return () => {
+            debouncedFetchArtworks.cancel();
         };
-
-        fetchArtworks();
-    }, [filters]);
+    }, [filters]); 
 
     return (
         <div>
-            <h1 style={{ textAlign: 'center' }}>Art Explorer</h1>
-
+            <h1 className="header-text">
+                <div className="line1">Welcome to</div>
+                <div className="line2">Art Explorer</div>
+            </h1>
+            
+            <div className='search-bar-container'>
             <SearchBar
-                placeholder="Search general query"
+                placeholder="Search General Query"
                 onSearch={(value) => updateFilter('general', value)}
             />
-
             <SearchBar
-                placeholder="Search by person"
+                placeholder="Search by Artist"
                 onSearch={(value) => updateFilter('person', value)}
             />
-
             <SearchBar
-                placeholder="Search by title"
+                placeholder="Search by Title"
                 onSearch={(value) => updateFilter('title', value)}
             />
-
-            <SearchBar
+            {/* <SearchBar
                 placeholder="Search by period"
                 onSearch={(value) => updateFilter('period', value)}
-            />
-
+            /> */}
             <ArtworkList artworks={artworks} />
+            </div>
         </div>
     );
 };
