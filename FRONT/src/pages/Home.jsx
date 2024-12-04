@@ -20,6 +20,8 @@ const Home = () => {
             ...prevFilters,
             [field]: value,
         }));
+        if (value.trim() === '')
+            setArtworks([])
     };
 
     const fetchArtworks = async () => {
@@ -29,7 +31,6 @@ const Home = () => {
             if (filters.general) params.query = filters.general;
             if (filters.person) params.person = filters.person;
             if (filters.title) params.title = filters.title;
-            // if (filters.period) params.period = filters.period;
 
             if (Object.keys(params).length === 0) return;
 
@@ -54,12 +55,12 @@ const Home = () => {
     }, [filters]); 
 
     return (
-        <div>
+        <div className="page-container">
             <h1 className="header-text">
                 <div className="line1">Welcome to</div>
                 <div className="line2">Art Explorer</div>
             </h1>
-            
+
             <div className='search-bar-container'>
             <SearchBar
                 placeholder="Search General Query"
@@ -73,14 +74,10 @@ const Home = () => {
                 placeholder="Search by Title"
                 onSearch={(value) => updateFilter('title', value)}
             />
-            {/* <SearchBar
-                placeholder="Search by period"
-                onSearch={(value) => updateFilter('period', value)}
-            /> */}
-            <ArtworkList artworks={artworks} />
             </div>
+            <ArtworkList artworks={artworks} />
         </div>
-    );
+    ); 
 };
 
 export default Home;
