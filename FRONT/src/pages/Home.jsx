@@ -8,11 +8,11 @@ import '../styles/App.css';
 const Home = () => {
     const [artworks, setArtworks] = useState([]);
     const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
     const [filters, setFilters] = useState({
         general: '',
         person: '',
         title: '',
-        period: '',
     });
 
     const updateFilter = (field, value) => {
@@ -27,13 +27,17 @@ const Home = () => {
     const fetchArtworks = async () => {
         try {
             setError(null);
+            setIsLoading(true);
             const params = {};
             if (filters.general) params.query = filters.general;
             if (filters.person) params.person = filters.person;
             if (filters.title) params.title = filters.title;
 
-            if (Object.keys(params).length === 0) return;
-
+            if (Object.keys(params).length === 0) {
+            setIsLoading(false);
+            return;
+            }
+            
             const queryString = new URLSearchParams(params).toString();
             const response = await api.get(`/artworks/search?${queryString}`);
             const artworksWithImages = response.data.filter(artwork => artwork.primaryimageurl);
@@ -41,6 +45,8 @@ const Home = () => {
         } catch (err) {
             setError('No artworks found or an error occurred.');
             setArtworks([]);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -75,7 +81,14 @@ const Home = () => {
                 onSearch={(value) => updateFilter('title', value)}
             />
             </div>
+
+            {isLoading ? (
+                <div className="loading-indicator">Loading artworks...</div> // Indicador de carga
+            ) : error ? (
+                <div className="error-message">{error}</div> // Mensaje de error
+            ) : (
             <ArtworkList artworks={artworks} />
+            )}
         </div>
     ); 
 };
