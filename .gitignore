@@ -14,8 +14,6 @@ dist-ssr
 
 package-lock.json
 
-apiConfig.js
-
 .env
 
 vite.config.js
