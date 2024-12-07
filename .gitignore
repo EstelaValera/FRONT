@@ -16,6 +16,9 @@ package-lock.json
 
 apiConfig.js
 
+.env
+
+vite.config.js
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -26,3 +29,5 @@ apiConfig.js
 *.njsproj
 *.sln
 *.sw?
+
+
