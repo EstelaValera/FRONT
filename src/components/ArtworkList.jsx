@@ -34,7 +34,7 @@ import Slider from "react-slick";
 
     return (
         <div className="artwork-list">
-            <Slider {...settings}>
+            <Slider {...settings} className='custom-slider' >
             {artworks.map((artwork) => (
                 <div className="artwork-card" key={artwork.id} >
                     <h3>{artwork.title}</h3>

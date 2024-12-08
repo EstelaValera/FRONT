@@ -346,20 +346,42 @@ animation: fade 1s infinite alternate;
 }
 
 @media (max-width: 480px) {
+html{
+  width: 100vw;
+}
+
   .search-input {
-    width: 90%;
+    width: 80%;
     font-size: 0.6rem;
   }
 
-  .artwork-list {
-    margin-top: 7vh;
-    padding: 0.4rem;
+  .search-container{
+    width: 95%;
   }
 
-  .artwork-card {
-    min-height: 20rem;
-    margin: 8rem 0;
+  .search-bar-container{
+    width: 99%;
+    flex-direction: unset;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 0rem;
+    margin: 0px 5px ;
+  }
+  .artwork-list {
+    padding: 0.4rem;
+    z-index: -10;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+
+  .artwork-card .slick-slide div {
+    min-height: 50rem;
+    margin: 1rem 0;
     padding: 1rem;
+    position: relative;
+    top: 90rem;
   }
 
   .artwork-card img {
@@ -372,7 +394,17 @@ animation: fade 1s infinite alternate;
     left: 3vw;
   }
 
-  .slick-dots {
-    bottom: -1rem;
+  .slick-slide{
+
   }
+  /* .slick-slider.slick-initialized {
+    min-height: 10rem;
+    margin: 1rem 0;
+    padding: 0rem;
+    position: relative;
+    top: 5rem;
+  } */
+  
+
 }
+
