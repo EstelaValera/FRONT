@@ -368,12 +368,10 @@ html{
     margin: 0px 5px ;
   }
   .artwork-list {
-    padding: 0.4rem;
-    z-index: -10;
     display: flex;
     flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
+    top: 25rem;
+    width: 85vw;
   }
 
   .artwork-card .slick-slide div {
@@ -394,16 +392,12 @@ html{
     left: 3vw;
   }
 
-  .slick-slide{
-
-  }
-  /* .slick-slider.slick-initialized {
-    min-height: 10rem;
-    margin: 1rem 0;
-    padding: 0rem;
+  .slick-slider {
+    min-height: 1rem;
+    padding: 0.2rem;
     position: relative;
-    top: 5rem;
-  } */
+    top: 2rem;
+  }
   
 
 }
