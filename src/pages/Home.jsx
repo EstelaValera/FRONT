@@ -3,6 +3,7 @@ import SearchBar from '../components/SearchBar';
 import ArtworkList from '../components/ArtworkList';
 import api from '../services/api';
 import debounce from 'lodash.debounce';
+import Tooltip from '../components/Tooltip';
 import '../styles/App.css';
 
 const Home = () => {
@@ -62,6 +63,9 @@ const Home = () => {
 
     return (
         <div className="page-container">
+
+            <Tooltip text="Busca obras de arte por artista, título o palabras clave." />
+
             <h1 className="header-text">
                 <div className="line1">Welcome to</div>
                 <div className="line2">Art Explorer</div>
@@ -83,9 +87,9 @@ const Home = () => {
             </div>
 
             {isLoading ? (
-                <div className="loading-indicator">Loading artworks...</div> // Indicador de carga
+                <div className="loading-indicator">Loading artworks...</div> 
             ) : error ? (
-                <div className="error-message">{error}</div> // Mensaje de error
+                <div className="error-message">{error}</div> 
             ) : (
             <ArtworkList artworks={artworks} />
             )}
